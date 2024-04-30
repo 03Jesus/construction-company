@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-db_url = os.getenv("DEVELOPMENT_DATABASE_URL")
+db_url = os.getenv("database-url")
 
 engine = create_engine(db_url, echo=True)
 
