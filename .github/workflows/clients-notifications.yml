@@ -1,0 +1,45 @@
+name: Clients Notifications deployment
+
+on:
+  push:
+    branches: [ "clients-notifications-main" ]
+
+env:
+  SERVICE_NAME: clients-notifications
+  RESOURCE_GROUP: construction-company-rg
+
+jobs:
+  ClientsNotifications:
+    name: Clients Notifications deployment
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: clients-notifications
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Azure Login
+        uses: Azure/login@v1.4.6
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }} 
+      - name: Install az containerapp extension
+        run: |
+          az config set extension.use_dynamic_install=yes_without_prompt
+      - name: ACR Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: constructioncompanyacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}  
+      - name: Get today date
+        id: date
+        run: echo "date=$(TZ=':America/Bogota' date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
+      - name: Build Docker Python image
+        run: | 
+          docker build --platform linux --tag constructioncompanyacr.azurecr.io/clients-notifications:${{ steps.date.outputs.date }} .
+      - name: Publish Docker Python image
+        run: |
+          docker push constructioncompanyacr.azurecr.io/clients-notifications:${{ steps.date.outputs.date }}
+      - name: Deploy Python container App
+        run: |
+          az containerapp up --name "$SERVICE_NAME" --resource-group $RESOURCE_GROUP --environment microservices-env --image constructioncompanyacr.azurecr.io/clients-notifications:${{ steps.date.outputs.date }}
