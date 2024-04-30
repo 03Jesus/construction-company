@@ -14,7 +14,7 @@ async def app_lifespan(app: FastAPI):
     print("Shutting down app")
 
 
-app = FastAPI(lifespan=app_lifespan)
+app = FastAPI(version="0.0.1",lifespan=app_lifespan)
 
 app.add_middleware(
     CORSMiddleware,
