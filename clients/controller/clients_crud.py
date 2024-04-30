@@ -4,7 +4,8 @@ from sqlmodel import Session, select
 from db.db import engine
 
 from os import getenv
-from azure.servicebus import ServiceBusClient, ServiceBusMessage
+from azure.servicebus.aio import ServiceBusClient
+from azure.servicebus import ServiceBusMessage
 from dotenv import load_dotenv
 
 load_dotenv()
