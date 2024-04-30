@@ -31,6 +31,7 @@ async def main():
                 sleep(5)
 
 
+# Gmail notification
 async def send_email(email: str, name: str):
     import yagmail
 
