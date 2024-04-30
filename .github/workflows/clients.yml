@@ -36,7 +36,7 @@ jobs:
         run: echo "date=$(TZ=':America/Bogota' date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
       - name: Build Docker Python image
         run: | 
-          docker build --platform linux --tag constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }} -f .
+          docker build --platform linux --tag constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }} .
       - name: Publish Docker Python image
         run: |
           docker push constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }}
