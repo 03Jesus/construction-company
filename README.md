@@ -58,6 +58,8 @@ DEVELOPMENT_DATABASE_URL
 ```
 
 ## Deployment
+> :warning: Before deploying it is necessary to have Azure CLI in the system logged in with the account where the infrastructure will be deployed.
+
 To deploy the entire infrastructure you can run the [deploy_system.sh](/deploy_system.sh) script
 ### Environment variables for deployment
 Most of the variables will be obtained from the terraform outputs. You should have a variables file for terraform `terraform.tfvars` at the same level as the main main file with the following variables:
