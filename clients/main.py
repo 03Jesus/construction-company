@@ -13,15 +13,16 @@ async def app_lifespan(app: FastAPI):
     # code to execute when app is shutting down
     print("Shutting down app")
 
-# Main app  v0.0.1
-app = FastAPI(version="0.0.1",lifespan=app_lifespan)
+
+# Main app  v0.0.2
+app = FastAPI(version="0.0.2", lifespan=app_lifespan)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 app.include_router(client_router)
