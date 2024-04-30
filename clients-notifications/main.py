@@ -1,7 +1,7 @@
 from os import getenv
 from dotenv import load_dotenv
 import asyncio
-from azure.servicebus import ServiceBusClient
+from azure.servicebus.aio import ServiceBusClient
 from time import sleep
 
 load_dotenv()
