@@ -81,6 +81,27 @@ GMAIL_ADDRESS
 GMAIL_API_KEY
 ```
 
+## CI/CD
+The following secrets are required for GitHub actions:
+- ACR_USERNAME
+- ACR_PASSWORD
+- AZURE_CREDENTIALS
+### Commands to get the credentials
+<details>
+<summary>For ACR_USERNAME and ACR_PASSWORD</summary>
+
+```
+az acr credential show --name <<acrnamehere>>
+```
+</details>
+<details>
+<summary>For AZURE_CREDENTIALS</summary>
+
+```
+az ad sp create-for-rbac --name "microservicesAccess" --role contributor --scopes /subscriptions/<<subscription-id-here>> --sdk-auth
+```
+Only the first 4 are required
+</details>
 # To Do...
 - API Managment service.
 - Add schedules microservices.
