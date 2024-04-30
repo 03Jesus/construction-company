@@ -13,8 +13,8 @@ async def app_lifespan(app: FastAPI):
     # code to execute when app is shutting down
     print("Shutting down app")
 
-
-app = FastAPI(lifespan=app_lifespan)
+# Main app  v0.0.1
+app = FastAPI(version="0.0.1",lifespan=app_lifespan)
 
 app.add_middleware(
     CORSMiddleware,
