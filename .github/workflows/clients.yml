@@ -28,7 +28,7 @@ jobs:
       - name: ACR Login
         uses: azure/docker-login@v1
         with:
-          login-server: contoso.azurecr.io
+          login-server: constructioncompanyacr.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}  
       - name: Get today date
