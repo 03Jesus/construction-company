@@ -42,4 +42,4 @@ jobs:
           docker push constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }}
       - name: Deploy Python container App
         run: |
-          az containerapp up --name "$SERVICE_NAME" --resource-group $RESOURCE_GROUP --environment microservices-env --image constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }} --ingress external --target-port 80
+          az containerapp up --name "$SERVICE_NAME" --resource-group $RESOURCE_GROUP --environment microservices-env --image constructioncompanyacr.azurecr.io/clients:${{ steps.date.outputs.date }}
